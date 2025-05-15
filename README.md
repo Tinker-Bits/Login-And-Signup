@@ -1,6 +1,6 @@
 # 🔐 FastAPI Firebase Auth API
 
-A live authentication API that allows users to **sign up** and **sign in** via a simple REST interface.
+A live authentication API that allows users to **sign up** and **sign in** using a simple REST interface.
 
 📍 **Base URL**:  
 https://signup-signin-fastapi-with-firebase.onrender.com
@@ -12,19 +12,20 @@ https://signup-signin-fastapi-with-firebase.onrender.com/docs
 
 ## 📝 Features
 
-- 🔐 **User Sign-Up** with password confirmation
-- 🔓 **User Sign-In** with password validation
-- 📡 Publicly hosted — ready to use, no setup required
+- 🔐 Sign up with password confirmation and unique username check
+- 🔓 Sign in with password validation
+- ⚠️ Returns proper HTTP status codes (e.g., `401 Unauthorized` for wrong passwords)
+- 📡 Publicly hosted — ready to use instantly
 
 ---
 
 ## 🚀 Usage
 
-Use the API right away via:
+You can use the API right away via:
 
 - [Swagger UI](https://signup-signin-fastapi-with-firebase.onrender.com/docs)
 - Postman or any HTTP client
-- `curl` commands (examples below)
+- `curl` (examples below)
 
 ---
 
@@ -43,7 +44,7 @@ Register a new user.
   "last_name": "<your_last_name>",
   "username": "<unique_username>",
   "password": "<your_password>",
-  "confirm_password": "<your_password_again>",
+  "confirm_password": "<your_password>",
   "age": <your_age>,
   "professional_title": "<your_title>"
 }
@@ -52,7 +53,7 @@ Register a new user.
 #### Responses
 
 * `200 OK`: User created successfully
-* `400 Bad Request`: Username already exists OR password mismatch
+* `400 Bad Request`: Username already exists or password mismatch
 
 ---
 
@@ -71,9 +72,9 @@ Authenticate a user.
 
 #### Responses
 
-* `200 OK`: `"Success"`
-* `200 OK`: `"Wrong Password"`
-* `400 Bad Request`: `"User Does Not Exist"`
+* `200 OK`: `{"message": "Success"}`
+* `401 Unauthorized`: `{"detail": "Wrong password"}`
+* `400 Bad Request`: `{"detail": "User does not exist"}`
 
 ---
 
@@ -81,14 +82,14 @@ Authenticate a user.
 
 ### ➡️ Swagger UI
 
-Test all endpoints interactively:
+Test all endpoints directly in your browser:
 👉 [https://signup-signin-fastapi-with-firebase.onrender.com/docs](https://signup-signin-fastapi-with-firebase.onrender.com/docs)
 
 ---
 
 ## 💻 Example with curl
 
-> Replace all placeholder values (`<...>`) with your own data.
+> Replace all `<...>` placeholders with your own data.
 
 ### ✅ Sign Up
 
@@ -122,10 +123,10 @@ curl -X POST "https://signup-signin-fastapi-with-firebase.onrender.com/signin" \
 
 ## ✅ Notes
 
-* No authentication key needed — the API is open to test.
-* Choose a unique username to avoid collisions with other users.
-* Passwords are stored in plaintext (for demo purposes only). Avoid using real or sensitive credentials.
+* No API key or token required — test freely.
+* Use a **unique username** to avoid conflicts.
+* Passwords are currently stored in plaintext (demo purposes). Avoid using real credentials.
 
 ---
 
-Enjoy testing the API! 🚀
+Enjoy exploring the API! 🚀

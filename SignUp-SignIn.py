@@ -49,6 +49,6 @@ def signin(sign_in_data: sign_in):
         if(ref[0].to_dict()['password']==sign_in_data.password):
             return "Success"
         else:
-            return "Wrong Password"
+            raise HTTPException(status_code=401, detail="Wrong password")
     else:
         raise HTTPException(status_code=400,detail="User Does Not Exist")
