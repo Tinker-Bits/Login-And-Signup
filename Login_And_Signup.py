@@ -39,6 +39,16 @@ def signup(user_instance: user):
         )
     else:
         raise HTTPException(status_code=400,detail="Password And Confrim Password Feild Not Same")
-@system.post('/signin')
-def signin():
-    return()
+class sign_in(BaseModel):
+    username: str
+    password: str
+@system.post('/signin')  
+def signin(sign_in_data: sign_in):
+    ref = collection.where("username","==",sign_in_data.username).limit(1).get()
+    if (ref):
+        if(ref[0].to_dict()['password']==sign_in_data.password):
+            return "Success"
+        else:
+            return "Wrong Password"
+    else:
+        raise HTTPException(status_code=400,detail="User Does Not Exist")
